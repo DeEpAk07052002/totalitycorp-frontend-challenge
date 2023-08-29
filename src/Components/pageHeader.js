@@ -15,7 +15,7 @@ function AppHeader() {
         items={[
           {
             label: <HomeTwoTone />,
-            key: "home",
+            key: "",
           },
           {
             label: "Men",
@@ -41,25 +41,21 @@ function AppHeader() {
             children: [
               {
                 label: "Women Dresses",
-                key: "women-shirts",
+                key: "womens-dresses",
               },
               {
                 label: "Women Shoes",
-                key: "women-shoes",
+                key: "womens-shoes",
               },
               {
                 label: "Women Jwellery",
-                key: "women-jwellery",
+                key: "womens-jewellery",
               },
               {
                 label: "Women Bag",
-                key: "women-bag ",
+                key: "womens-bags",
               },
             ],
-          },
-          {
-            label: "Accessories",
-            key: "accessories",
           },
         ]}
       ></Menu>
