@@ -1,0 +1,28 @@
+.login-page {
+    background: linear-gradient(to right, #348f50, #56b4d3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 16px;
+    overflow: hidden;
+  }
+  
+  .login-card {
+    width: 300px;
+    padding: 24px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: fixed;
+  }
+  
+  .site-form-item-icon {
+    color: rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
+  
+  .login-form-button {
+    width: 100%;
+    overflow: hidden;
+  }

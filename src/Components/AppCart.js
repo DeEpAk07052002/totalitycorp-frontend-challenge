@@ -39,7 +39,7 @@ function AppCart() {
         const promises = items_list.map(async (list) => {
           const res = await getProductsByCategory(list);
           return res.products?.filter((product) =>
-            data_cart.includes(product.id.toString())
+            data_cart?.includes(product.id.toString())
           );
         });
 
@@ -47,7 +47,7 @@ function AppCart() {
 
         const allProductsRes = await getAllProducts();
         const allProducts = allProductsRes.products?.filter((product) =>
-          data_cart.includes(product.id.toString())
+          data_cart?.includes(product.id.toString())
         );
 
         setDataCart((prevData) => [

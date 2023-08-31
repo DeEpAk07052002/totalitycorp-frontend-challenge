@@ -1,70 +1,15 @@
-# Getting Started with Create React App
+TechStack:- I have used React.js teckstack and for frontend i have used ant-design libarary that was mostly used in react. For getting data i have used https://dummyjson.com/docs/products(DummyJson api ) that are openSource and provide the free json file of product that i have been using in my projects,
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+APPROACH-:
 
-## Available Scripts
+- I have divided my Application into three parts frist are header and second are body and third one is cart
 
-In the project directory, you can run:
+-In the header part i have made by used menu like panel that have 3 part home ,mens and womnes and at the end i have cart also'
 
-### `npm start`
+- In the body part i have used card that have name ,prize ,rating ,add to card button on it and it have been fetched by https://dummyjson.com/docs/products(DummyJson api ) i have mentioned before on clicking on the add to cart button the product will Added into the card and store the id of that product in database that has been used into the cart.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- I have also the Sorting function that will sort the product according to the price and rating .
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- In the Cart i have been viewing the list of item that have been added to cart and fetced from localstorage ,in the cart i have option to add the frequency of cart and delete from cart and in the last its been showing the total cost and downwards the button was heckout button.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- In the checkout button i have open an modal that will have to give the details of the user like name,mail ,addresss and on Submit order confirmed and data will remove from cart .
