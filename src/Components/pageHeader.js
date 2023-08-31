@@ -67,7 +67,6 @@ function AppHeader() {
         ]}
       ></Menu>
 
-      <Typography.Title>Aamir Store</Typography.Title>
       <AppCart />
     </div>
   );

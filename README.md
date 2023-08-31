@@ -13,3 +13,8 @@ APPROACH-:
 - In the Cart i have been viewing the list of item that have been added to cart and fetced from localstorage ,in the cart i have option to add the frequency of cart and delete from cart and in the last its been showing the total cost and downwards the button was heckout button.
 
 - In the checkout button i have open an modal that will have to give the details of the user like name,mail ,addresss and on Submit order confirmed and data will remove from cart .
+
+Deploying-:
+i have deploy this code on firebase
+
+https://ecommerce-a90bf.web.app
