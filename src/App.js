@@ -9,7 +9,7 @@ function App() {
       <BrowserRouter>
         <AppHeader />
         <PageContent />
-        <AppFooter />
+        {/* <AppFooter /> */}
       </BrowserRouter>
     </div>
   );
