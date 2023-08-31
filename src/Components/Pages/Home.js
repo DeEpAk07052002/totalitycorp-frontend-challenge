@@ -19,6 +19,7 @@ import { useParams } from "react-router-dom";
 function Home() {
   const [loading, setLoading] = useState(true);
   const [loading2, setLoading2] = useState(false);
+  const [loading3, setLoading3] = useState(false);
   const [Cart, setCart] = useState([]);
   const [items, setItems] = useState([]);
   const param = useParams();
@@ -105,6 +106,7 @@ function Home() {
     });
   };
   const handleSelectRange = async (e) => {
+    setLoading3(true);
     console.log("thi si s", e.key);
     let data = await getAllProducts();
     data = data.products;
@@ -127,6 +129,7 @@ function Home() {
       f_data = data.filter((product) => product.price >= 100);
     }
     setItems(f_data);
+    setLoading3(false);
 
     // Return the updated data to update the state
   };
@@ -171,7 +174,7 @@ function Home() {
       <Skeleton
         active
         paragraph={{ rows: 20 }}
-        loading={loading === true || loading2 === true}
+        loading={loading === true || loading2 === true || loading3 === true}
       >
         <List
           grid={{ column: 3 }}
