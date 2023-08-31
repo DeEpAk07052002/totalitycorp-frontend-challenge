@@ -4,9 +4,11 @@ export const getAllProducts = async () => {
   );
 };
 export const getProductsByCategory = async (category) => {
-  return await fetch(
+  let data = await fetch(
     `https://dummyjson.com/products/category/${category}`
   ).then((res) => res.json());
+  console.log(data);
+  return data;
 };
 export const addToCard = async (id) => {
   return await fetch("https://dummyjson.com/carts/add", {

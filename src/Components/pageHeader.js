@@ -1,12 +1,19 @@
 import "../App.css";
-import { Menu } from "antd";
-import { HomeTwoTone } from "@ant-design/icons";
+import { useState } from "react";
+import { Badge, Menu, Typography, Dropdown, Button, Space } from "antd";
+import {
+  HomeTwoTone,
+  ShoppingCartOutlined,
+  DownOutlined,
+} from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import AppCart from "./AppCart";
 function AppHeader() {
   const navigate = useNavigate();
   const onMenuClick = (item) => {
     navigate(`/${item.key}`);
   };
+
   return (
     <div className="appHeader">
       <Menu
@@ -59,6 +66,9 @@ function AppHeader() {
           },
         ]}
       ></Menu>
+
+      <Typography.Title>Aamir Store</Typography.Title>
+      <AppCart />
     </div>
   );
 }
