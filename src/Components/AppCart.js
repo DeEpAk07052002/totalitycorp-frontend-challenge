@@ -1,4 +1,14 @@
-import { Badge, Button, Drawer, InputNumber, Table } from "antd";
+import {
+  Badge,
+  Button,
+  Drawer,
+  InputNumber,
+  Table,
+  message,
+  Modal,
+  Form,
+  Input,
+} from "antd";
 import { useEffect, useState } from "react";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { getProductsByCategory, getAllProducts } from "./Api";
@@ -52,6 +62,22 @@ function AppCart() {
 
     fetchData();
   }, []);
+  const handleChange = (e) => {
+    const value = e.value ? e.value : 0;
+
+    const updatedDataCart = dataCart.map((data) => {
+      if (data.id === e.record.id) {
+        return {
+          ...data,
+          quantity: value,
+          total: value * data.price,
+        };
+      }
+      return data;
+    });
+    console.log("this is  updated card", updatedDataCart);
+    setDataCart(updatedDataCart);
+  };
   console.log("dataCart", dataCart);
   const objectSet = new Set();
 
@@ -67,8 +93,13 @@ function AppCart() {
   );
   let data_to_change = [];
   uniqueObjectsArray.map((data) => {
-    data_to_change.push({ ...data, quantity: 1, total: data.price });
+    if (!data.quantity && !data.total) {
+      data_to_change.push({ ...data, quantity: 1, total: data.price });
+    } else {
+      data_to_change.push(data);
+    }
   });
+  console.log("data_to chnage", data_to_change);
 
   console.log("uniqueObjectsArray", uniqueObjectsArray);
   const handleClick = (e) => {
@@ -82,6 +113,27 @@ function AppCart() {
     setDataCart(filteredData);
     // window.location.reload();
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+  const onFinish = (values) => {
+    console.log("Form values:", values);
+    localStorage.clear();
+    setDataCart([]);
+    handleOk();
+    setCnt(0);
+    message.success("Order Placed");
+  };
+
   return (
     <div>
       <Badge
@@ -97,7 +149,7 @@ function AppCart() {
         open={open}
         onClose={() => {
           setOpen(false);
-          window.location.reload();
+          //   window.location.reload();
         }}
         title="Your Cart"
         contentWrapperStyle={{ width: "500px" }}
@@ -118,8 +170,17 @@ function AppCart() {
             {
               title: "Quantity",
               dataIndex: "quantity",
-              render: (value) => {
-                return <InputNumber defaultValue={1} />;
+              render: (value, record) => {
+                return (
+                  <InputNumber
+                    onChange={(e) => {
+                      console.log("this is target", e);
+                      handleChange({ record: record, value: e });
+                    }}
+                    min={1}
+                    defaultValue={1}
+                  />
+                );
               },
             },
             {
@@ -145,8 +206,73 @@ function AppCart() {
             },
           ]}
           dataSource={data_to_change}
+          summary={(data) => {
+            const total = data.reduce((pre, current) => {
+              return pre + current.total;
+            }, 0);
+            return <span>Total:${total}</span>;
+          }}
         />
+        <Button type="primary" disabled={cnt == 0} onClick={showModal}>
+          {" "}
+          CheckOut Your Cart
+        </Button>
       </Drawer>
+      <Modal
+        title="Basic Modal"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <Form onFinish={onFinish}>
+          <Form.Item
+            label="Name"
+            name="name"
+            rules={[{ required: true, message: "Please enter your name" }]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              { required: true, message: "Please enter your email" },
+              { type: "email", message: "Please enter a valid email" },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Address"
+            name="address"
+            rules={[{ required: true, message: "Please enter your address" }]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label="Phone Number"
+            name="phone"
+            rules={[
+              { required: true, message: "Please enter your phone number" },
+              {
+                pattern: /^\d{10}$/,
+                message: "Please enter a valid 10-digit phone number",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
     </div>
   );
 }

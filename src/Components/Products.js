@@ -129,7 +129,7 @@ function Products() {
                     onClick={() => {
                       addProductToCart(product);
                     }}
-                    disabled={Cart.includes(product.id.toString())}
+                    disabled={Cart?.includes(product.id.toString())}
                   >
                     Add To Cart
                   </Button>,
