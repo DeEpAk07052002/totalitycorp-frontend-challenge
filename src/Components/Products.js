@@ -40,6 +40,24 @@ function Products() {
       label: "Rating Low to High",
     },
   ];
+  const RangeDropdown = [
+    {
+      key: "0-10",
+      label: "$0-$10",
+    },
+    {
+      key: "10-30",
+      label: "$10-$30",
+    },
+    {
+      key: "30-100",
+      label: "$30-$100",
+    },
+    {
+      key: "100",
+      label: "$100 +",
+    },
+  ];
 
   useEffect(() => {
     console.log("i am here");
@@ -86,6 +104,32 @@ function Products() {
       return data; // Return the updated data to update the state
     });
   };
+  const handleSelectRange = async (e) => {
+    console.log("thi si s", e.key);
+    let data = await getProductsByCategory(param.category);
+    data = data.products;
+    console.log("this is api data", data);
+    let f_data;
+    if (e.key === "0-10") {
+      console.log("i am here");
+      f_data = data.filter(
+        (product) => product.price >= 0 && product.price <= 10
+      );
+    } else if (e.key === "10-30") {
+      f_data = data.filter(
+        (product) => product.price >= 10 && product.price <= 30
+      );
+    } else if (e.key === "30-100") {
+      f_data = data.filter(
+        (product) => product.price >= 30 && product.price <= 100
+      );
+    } else if (e.key === "100") {
+      f_data = data.filter((product) => product.price >= 100);
+    }
+    setItems(f_data);
+
+    // Return the updated data to update the state
+  };
   console.log("this is loading ", items, param.category);
   return (
     <div>
@@ -102,6 +146,23 @@ function Products() {
         <Button type="primary">
           <Space>
             Sort
+            <DownOutlined />
+          </Space>
+        </Button>
+      </Dropdown>
+      <Dropdown
+        overlay={
+          <Menu onClick={handleSelectRange}>
+            {RangeDropdown.map((item) => (
+              <Menu.Item key={item.key}>{item.label}</Menu.Item>
+            ))}
+          </Menu>
+        }
+        arrow
+      >
+        <Button type="primary" style={{ marginLeft: "2%" }}>
+          <Space>
+            Range
             <DownOutlined />
           </Space>
         </Button>
@@ -123,18 +184,41 @@ function Products() {
                 cover={
                   <Image className="itemCardImage" src={product.thumbnail} />
                 }
-                actions={[
-                  <Button
-                    type="link"
-                    onClick={() => {
-                      addProductToCart(product);
-                    }}
-                    disabled={Cart?.includes(product.id.toString())}
-                  >
-                    Add To Cart
-                  </Button>,
-                  <Rate allowHalf disabled value={product.rating} />,
-                ]}
+                actions={
+                  localStorage.getItem("screenSize") < 600
+                    ? [
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Button
+                            type="link"
+                            onClick={() => {
+                              addProductToCart(product);
+                            }}
+                            disabled={Cart?.includes(product.id.toString())}
+                          >
+                            Add To Cart
+                          </Button>
+                          <Rate allowHalf disabled value={product.rating} />
+                        </div>,
+                      ]
+                    : [
+                        <Button
+                          type="link"
+                          onClick={() => {
+                            addProductToCart(product);
+                          }}
+                          disabled={Cart?.includes(product.id.toString())}
+                        >
+                          Add To Cart
+                        </Button>,
+                        <Rate allowHalf disabled value={product.rating} />,
+                      ]
+                }
               >
                 <Card.Meta
                   title={
