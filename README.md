@@ -4,7 +4,7 @@ APPROACH-:
 
 - I have divided my Application into three parts frist are header and second are body and third one is cart
 
--In the header part i have made by used menu like panel that have 3 part home ,mens and womnes and at the end i have cart also'
+- In the header part i have made by used menu like panel that have 3 part home ,mens and womnes and at the end i have cart also'
 
 - In the body part i have used card that have name ,prize ,rating ,add to card button on it and it have been fetched by https://dummyjson.com/docs/products(DummyJson api ) i have mentioned before on clicking on the add to cart button the product will Added into the card and store the id of that product in database that has been used into the cart.
 
